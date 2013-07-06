@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCBA421F-101A-4535-BD58-EEF96F15FAE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MHM.WinFlexOne.Services.Integration</RootNamespace>
+    <AssemblyName>MHM.WinFlexOne.Services.Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\..\Shared\Global\MHM.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net40-client\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.WcfIntegration">
+      <HintPath>..\..\packages\Castle.WcfIntegrationFacility.3.2.0\lib\net40\Castle.Facilities.WcfIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net40\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigModel\IntegrationConfigSection.cs" />
+    <Compile Include="ConfigModel\ServiceBroker.Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceBroker.Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigModel\ServiceRegistry.Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceRegistry.Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\ClaimProxyFactory.cs" />
+    <Compile Include="Factories\CardRequestBatchProxyFactory.cs" />
+    <Compile Include="Factories\ImporterProxyFactory.cs" />
+    <Compile Include="Factories\ObjectServiceFactory.cs" />
+    <Compile Include="Factories\ServiceProxyFactory.cs" />
+    <Compile Include="Installers\ServiceInstanceInstaller.cs" />
+    <Compile Include="IProxyFactory.cs" />
+    <Compile Include="IServiceBroker.cs" />
+    <Compile Include="IServiceFactory.cs" />
+    <Compile Include="IServiceLocator.cs" />
+    <Compile Include="IServiceRegistry.cs" />
+    <Compile Include="MHMServiceRegistryException.cs" />
+    <Compile Include="NinjectServiceBroker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBroker.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="ConfigBasedServiceRegistry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\MHM.Framework.csproj">
+      <Project>{AB5EEDDF-306F-4A72-8091-D1BE00D9F1EB}</Project>
+      <Name>MHM.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Utilities\MHM.Utilities.csproj">
+      <Project>{CD574B6E-D5B8-4350-88F6-361E6FEF0308}</Project>
+      <Name>MHM.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Utilities\Wcf\Client\MHM.Utilities.Wcf.Client.csproj">
+      <Project>{1C8BE351-1831-4AB3-9A07-A1BCB0F2E366}</Project>
+      <Name>MHM.Utilities.Wcf.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ServiceBroker.Common.csproj">
+      <Project>{7cdbefbf-38f3-4a4c-a3a5-f21a3f03a188}</Project>
+      <Name>ServiceBroker.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interfaces\Public\MHM.WinflexOne.Interfaces.Public.csproj">
+      <Project>{F2DD5CFA-FB24-437C-9F5F-8689C25193F5}</Project>
+      <Name>MHM.WinflexOne.Interfaces.Public</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ConfigModel\ServiceBroker.Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceBroker.Model.cs</LastGenOutput>
+    </None>
+    <None Include="ConfigModel\ServiceRegistry.Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceRegistry.Model.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="XSD\ServiceBrokerModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\ServiceRegistryModel.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

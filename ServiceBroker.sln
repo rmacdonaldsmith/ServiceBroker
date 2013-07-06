@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHM.WinFlexOne.Services.Integration", "src\Integration\MHM.WinFlexOne.Services.Integration.csproj", "{BCBA421F-101A-4535-BD58-EEF96F15FAE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHM.WinFlexOne.Services.Integration.Tests", "src\Integration.Tests\MHM.WinFlexOne.Services.Integration.Tests.csproj", "{595EDC21-60B9-414E-91BA-5BB8C1E6EA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBroker.Common", "Common\ServiceBroker.Common.csproj", "{7CDBEFBF-38F3-4A4C-A3A5-F21A3F03A188}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCBA421F-101A-4535-BD58-EEF96F15FAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBA421F-101A-4535-BD58-EEF96F15FAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBA421F-101A-4535-BD58-EEF96F15FAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBA421F-101A-4535-BD58-EEF96F15FAE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595EDC21-60B9-414E-91BA-5BB8C1E6EA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595EDC21-60B9-414E-91BA-5BB8C1E6EA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595EDC21-60B9-414E-91BA-5BB8C1E6EA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595EDC21-60B9-414E-91BA-5BB8C1E6EA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDBEFBF-38F3-4A4C-A3A5-F21A3F03A188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDBEFBF-38F3-4A4C-A3A5-F21A3F03A188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDBEFBF-38F3-4A4C-A3A5-F21A3F03A188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDBEFBF-38F3-4A4C-A3A5-F21A3F03A188}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

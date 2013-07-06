@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Michael (Self) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ServiceBrokerConfig" type="ServiceBrokerConfig">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ServiceBrokerConfig">
+		<xs:sequence>
+			<xs:element name="Container" type="ContainerInfo"/>
+			<xs:element name="FactoryConfig" type="FactoryConfiguration"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContainerConfig">
+		<xs:annotation>
+			<xs:documentation>Container configuration Information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Container" type="ContainerInfo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContainerInfo">
+		<xs:annotation>
+			<xs:documentation>Provides MetaData about a container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:ID"/>
+	</xs:complexType>
+	<xs:complexType name="HandlerInfo">
+		<xs:annotation>
+			<xs:documentation>Provides MetaData about an invocation handler</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ID" type="xs:ID"/>
+		<xs:attribute name="type" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="ContainerReference">
+		<xs:attribute name="href" type="xs:IDREF"/>
+	</xs:complexType>
+	<xs:complexType name="FactoryConfiguration">
+		<xs:sequence>
+			<xs:element name="FactoryOverrides">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Override" type="FactoryOverrideConfig" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Factories">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Factory" type="FactoryInfo" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DefaultFactory" type="FactoryReference"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FactoryInfo">
+		<xs:annotation>
+			<xs:documentation>Provides Factory MetaData</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Type" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:ID"/>
+	</xs:complexType>
+	<xs:complexType name="FactoryReference">
+		<xs:attribute name="href" type="xs:IDREF"/>
+	</xs:complexType>
+	<xs:complexType name="Property">
+		<xs:annotation>
+			<xs:documentation>General Property Type For specifying custom data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string"/>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FactoryOverrideConfig">
+		<xs:sequence>
+			<xs:element name="Factory" type="FactoryReference"/>
+			<xs:element name="ServiceInterface" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

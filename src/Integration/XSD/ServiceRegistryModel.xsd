@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Michael (Self) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ServiceRegistryConfig" type="ServiceRegistryConfig">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ServiceRegistryConfig">
+		<xs:sequence>
+			<xs:element name="ServiceInstances">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceInstance" type="ServiceInstanceInfo" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ServiceDefinitions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceDefinition" type="ServiceDefinition" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObjectServiceInstanceInfo">
+		<xs:complexContent>
+			<xs:extension base="ServiceInstanceInfo">
+				<xs:sequence>
+					<xs:element name="ServiceClassName" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WcfServiceInstanceInfo">
+		<xs:complexContent>
+			<xs:extension base="ServiceInstanceInfo">
+				<xs:sequence>
+					<xs:element name="Uri" type="xs:anyURI"/>
+					<xs:element name="EndPointName" type="xs:string"/>
+					<xs:element name="DataContractSerializerBehaviour" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string"/>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceInstanceInfo" abstract="true">
+		<xs:attribute name="Id" type="xs:ID"/>
+		<xs:attribute name="ServiceDefinition" type="xs:IDREF"/>
+	</xs:complexType>
+	<xs:complexType name="ServiceDefinition">
+		<xs:sequence>
+			<xs:element name="InterfaceType" type="xs:string"/>
+			<xs:element name="ServiceCreationModel" type="ServiceCreationEnum"/>
+			<xs:element name="DefaultInstance" type="xs:IDREF"/>
+		</xs:sequence>
+		<xs:attribute name="Id" type="xs:ID"/>
+	</xs:complexType>
+	<xs:simpleType name="ServiceCreationEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Singleton"/>
+			<xs:enumeration value="PerCall"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BindingEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="NetTcp"/>
+			<xs:enumeration value="HTTP"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

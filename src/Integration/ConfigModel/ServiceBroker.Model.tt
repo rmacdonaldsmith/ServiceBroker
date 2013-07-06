@@ -1,0 +1,30 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#
+
+string _TempPath = System.IO.Path.GetTempPath();
+//Determine path to XSD using relative path to the TT file
+string _XsdPath = Host.ResolvePath("..\\XSD");
+string _XsdExePath = string.Format(@"{0}\Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\xsd.exe", Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86));
+
+//var _StartInfo = new System.Diagnostics.ProcessStartInfo( _SvcUtilPath,
+//		string.Format( "\"{1}\\ServiceBroker.Model.xsd\" /target:code /out:{0} /n:*,MHM.WinFlexOne.Services.Integration.Schema /dconly /ser:XmlSerializer /ImportXmTypes", _TempPath, _XsdPath ) );
+
+var _StartInfo = new System.Diagnostics.ProcessStartInfo( _XsdExePath, string.Format( "\"{0}\\ServiceBrokerModel.xsd\" /classes /out:{1} /n:MHM.WinFlexOne.Services.Integration.Schema", _XsdPath, _TempPath ) );
+_StartInfo.UseShellExecute = false;
+_StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+
+var _Process = System.Diagnostics.Process.Start( _StartInfo );
+_Process.WaitForExit();
+if ( _Process.ExitCode != 0 )
+{
+	throw new ApplicationException( "Xsd.exe failed with exit code " + _Process.ExitCode.ToString() );
+}
+
+//read the contents of the cs file (ie. the code) and delete the temp file.
+string _TempFile = System.IO.Path.Combine(_TempPath, "ServiceBrokerModel.cs");
+string _ClassFile = System.IO.File.ReadAllText(_TempFile);
+System.IO.File.Delete(_TempFile);
+
+#>
+<#= _ClassFile #>
